@@ -128,6 +128,9 @@
   </section>
 
 
+  
+
+
   <!-- Bootstrap core JavaScript -->
   <script src="<?php echo base_url() ?>page_template/vendor/jquery/jquery.min.js"></script>
   <script src="<?php echo base_url() ?>page_template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

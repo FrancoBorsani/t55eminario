@@ -6,22 +6,15 @@ class Mlogin extends CI_Model{
 
 
 public function ingresar($usu, $pass){
-	$this->db->select('idPersona', 'nombre', 'contraseña');
-	$this->db->from('persona'); 
-	$this->db->where('nombre', $usu);
+	$this->db->select('correo', 'contraseña');
+	$this->db->from('persona');
+	$this->db->where('correo', $usu);
 	$this->db->where('contraseña', $pass);
 
 	$resultado = $this->db->get();
 
 	if($resultado->num_rows() == 1){
-	/*	$r = $resultado->row();
 
-		$s_usuario = array(
-			's_idPersona' => $r->idPersona,
-			's_userName' => $r->nombre
-		);
-
-	//	$this->session->set_userdata($s_usuario);*/
 		return 1;
 	}else{
 		return 0;
@@ -31,5 +24,34 @@ public function ingresar($usu, $pass){
 }
 
 
+
+
+
+public function ingresarRec($usu, $txtClaveRecuperacion){
+	$this->db->select('correo');
+	$this->db->from('persona');
+	$this->db->where('correo', $usu);
+
+	$resultado = $this->db->get();
+
+	if($resultado->num_rows() == 1){
+
+	$this->db->select('num');
+	$this->db->from('clave');
+	$this->db->where('num', $txtClaveRecuperacion);
+
+$resultado2 = $this->db->get();
+
+	if($resultado2->num_rows() == 1){
+		return 1;
+		}
+
+		
+	}else{
+		return 0;
+	}
+
+
+}
 
 }

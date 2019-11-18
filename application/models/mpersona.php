@@ -8,31 +8,42 @@ class Mpersona extends CI_model {
 
 
 	public function guardar($param){
-	$this->db->select('idPersona', 'nombre', 'contraseña');
-	$this->db->from('persona'); 
-	$this->db->where('nombre', $param['nombre']);
-	$this->db->where('contraseña', $param['clave']);
+	$this->db->select('nombre');
+	$this->db->from('persona');
+	$this->db->where('nombre', $param['nombreUs']);
 
 	$resultado = $this->db->get();
 
 	if($resultado->num_rows() >0){
+		echo"<script>alert('EL NOMBRE DE USUARIO YA EXISTE, ELIJA OTRO')</script>";
+	return;}
 
-		echo "ERROR AL ACCEDER, EL USUARIO YA EXISTE";
+	$this->db->select('correo');
+	$this->db->from('persona'); 
+	$this->db->where('correo', $param['correo']);
+
+	$resultado2 = $this->db->get();
+
+
+	if($resultado2->num_rows() >0){
+		echo"<script>alert('EL CORREO YA ESTÁ REGISTRADO EN ESTA PÁGINA')</script>";
 		return;
-}else{
+}
 
-
-
-$campos = array(
-	'nombre' => $param['nombre'],
-	'contraseña' => $param['clave']
+	$campos = array(
+	'nombre' => $param['nombreUs'],
+	'contraseña' => $param['clave'],
+	'claveRepeat' => $param['claveRepeat'],
+	'nombrePersona' => $param['nombrePersona'],
+	'apellidoPersona' => $param['apellidoPersona'],
+	'correo' => $param['correo'],
+	'preguntaRespuesta' => $param['txtPreguntaRespuesta']
 );
 
 $this->db->insert('persona', $campos);
+
+return 2;
 }
 
 	}
 
-
-
-}

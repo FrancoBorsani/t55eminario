@@ -11,23 +11,39 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-	$this->load->view('login.php');
-	//	$this->load->view('welcome_message');
+		$this->load->view('bienvenido.php');
 	}
 
 	public function guardar(){
-	$param['nombre'] = 	$this->input->post('txtUsuario');
+	$param['nombreUs'] = 	$this->input->post('txtUsuario');
 	$param['clave'] =  sha1($this->input->post('txtClave'));
-	$this->mpersona->guardar($param);
+	$param['claveRepeat'] = sha1($this->input->post('claveRepeat'));
+	$param['nombrePersona'] = $this->input->post('txtNombre');
+	$param['apellidoPersona'] = $this->input->post('txtApellido');
+	$param['correo'] = $this->input->post('txtCorreo');
+	$param['txtPreguntaRespuesta'] = $this->input->post('txtPreguntaRespuesta');
 
-	$this->load->view('login.php');
 
+	if(strcmp($param['clave'], $param['claveRepeat']) != 0){
+
+		echo"<script>alert('La clave no ha sido validada correctamente')</script>";
+			$this->load->view('registro.php');
 	}
 
+	$variable = $this->mpersona->guardar($param);
 
-	
+	if($variable == 2){
+	$this->load->view('inicio.php');
+}else{
+
+	$this->load->view('registro.php');
+}
 
 
 
+
+
+
+	}
 
 }

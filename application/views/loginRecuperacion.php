@@ -64,10 +64,10 @@ input {
 input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }
 </style></head><body>
 <div class="login">
-    <h1>Logueo</h1>
-    <form action="<?php echo base_url();?>clogin/ingresar" method="POST">
+    <h1>Inicio mediante recuperación</h1>
+    <form action="<?php echo base_url();?>clogin/verificar" method="POST">
         <input type="text" name="txtCorreo" placeholder="Correo electronico" required="required" />
-        <input type="password" name="txtClave" placeholder="Contraseña" required="required" />
+        <input type="password" name="txtClaveRecuperacion" placeholder="Contaseña" required="required" />
         <button type="submit" class="btn btn-primary btn-block btn-large" name="Ingresar">INGRESAR</button>
 
     </form>
