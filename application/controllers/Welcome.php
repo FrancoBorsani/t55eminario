@@ -30,9 +30,12 @@ class Welcome extends CI_Controller {
 			$this->load->view('registro.php');
 	}
 
+
+
 	$variable = $this->mpersona->guardar($param);
 
 	if($variable == 2){
+
 	$this->load->view('inicio.php');
 }else{
 

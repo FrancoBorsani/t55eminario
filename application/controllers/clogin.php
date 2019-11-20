@@ -1,7 +1,10 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-
-
+require $_SERVER['DOCUMENT_ROOT'] . '/mail/Exception.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/mail/PHPMailer.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/mail/SMTP.php';
 /**
  * 
  */
@@ -87,17 +90,17 @@ $resultado2 = $this->db->get();
 			$query2 = $this->db->get();
 	 $result2 = $query2->row();
       
-
+/*
 $email_config = Array(
             'protocol'  => 'smtp',
-            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_host' => 'ssl://smtp.gmail.com',
             'smtp_port' => '465',
             'smtp_user' => 'borsafranco@gmail.com',
             'smtp_pass' => '2771999allforwindows10',
             'mailtype'  => 'html',
             'starttls'  => true,
             'newline'   => "\r\n"
-        );
+        );*/
 
 
 //CREACIÓN DE CLAVES ALEATORIOS:
@@ -112,16 +115,47 @@ $email_config = Array(
 		$this->db->where('num', $this->myglobalvar);
 		$numero = $this->db->get();
 	 $numeroRec = $numero->row();
+
+
+$mail = new PHPMailer;
+$mail->isSMTP(); 
+//$mail->SMTPDebug = 2; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
+$mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
+$mail->Port = 587; // TLS only
+$mail->SMTPSecure = 'tls'; // ssl is deprecated
+$mail->SMTPAuth = true;
+$mail->Username = 'borsafranco@gmail.com'; // email
+$mail->Password = '2771999allforwindows10'; // password
+$mail->setFrom('borsafranco@gmail.com', 'Franco Borsani'); // From email and name
+$mail->addAddress($result1->correo, 'Sr'); // to email and name
+$mail->Subject = 'RECUPERACION LOGIN TP SEMINARIO';
+$mail->msgHTML($numeroRec->num); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
+//$mail->AltBody = 'HTML messaging not supported'; // If html emails is not supported by the receiver, show this body
+// $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
+$mail->SMTPOptions = array(
+                    'ssl' => array(
+                        'verify_peer' => false,
+                        'verify_peer_name' => false,
+                        'allow_self_signed' => true
+                    )
+                );
+                
+                
+$mail->send();
+
+   
+
+
       
 
-        $this->load->library('email', $email_config);
+      //  $this->load->library('email', $email_config);
 
-        $this->email->from('borsafranco@gmail.com', 'Franco Borsani');
-        $this->email->to($result1->correo);
-        $this->email->subject('RECUPERACIÓN LOGIN TP SEMINARIO');
+     //   $this->email->from('borsafranco@gmail.com', 'Franco Borsani');
+     //   $this->email->to($result1->correo);
+     //   $this->email->subject('RECUPERACIÓN LOGIN TP SEMINARIO');
      //   $this->email->message($result2->contraseña);
-		 $this->email->message($numeroRec->num);
-        $this->email->send();
+	//	 $this->email->message($numeroRec->num);
+     //   $this->email->send();
 
 
        $this->load->view('ingresarPassword.php');
@@ -141,14 +175,6 @@ echo"<script>alert('LA PREGUNTA DE SEGURIDAD ES ERRÓNEA, VUELVA A INTENTARLO')<
 
 }
 
-
-
- /* 
- if($this->email->send()){
-
- 	
- }
-          $this->session->set_flashdata("email_sent","Congragulation Email Send Successfully.");*/
 
 else{
 			echo"<script>alert('EL CORREO NO ESTÁ REGISTRADO, VUELVA A INTENTARLO')</script>";
