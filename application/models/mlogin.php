@@ -54,4 +54,31 @@ $resultado2 = $this->db->get();
 
 }
 
+public function agregarClaveTemporal($claveTemporal){
+
+
+$campoClave = array(
+	'num' => $claveTemporal
+
+);
+
+
+$this->db->insert('clave', $campoClave);
+
+
+return;
+}
+
+
+
+public function eliminarClaveTemporal($pass){
+
+$this->db->where('num', $pass);
+$this->db->delete('clave');
+
+return 1;
+
+}
+
+
 }

@@ -10,7 +10,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/mail/SMTP.php';
  */
 class Clogin extends CI_Controller
 {
-	private $myglobalvar=10000000;
+	private $myglobalvar=0;
 	
 	function __construct(){
 			parent::__construct();
@@ -104,12 +104,16 @@ $email_config = Array(
 
 
 //CREACIÓN DE CLAVES ALEATORIOS:
-		$this->myglobalvar = $this->myglobalvar + rand(1,900);
+		$this->myglobalvar = $this->myglobalvar + rand(1,1000);
 	
-		if($this->myglobalvar > 10001000){
+	/*	if($this->myglobalvar > 10001000){
 			 $myglobalvar=10000000;
 
-		}
+		}*/
+		
+		$this->mlogin->agregarClaveTemporal($this->myglobalvar);
+		
+		
 		$this->db->select('num');
 		$this->db->from('clave'); 
 		$this->db->where('num', $this->myglobalvar);
@@ -250,15 +254,16 @@ $pass = $this->input->post('txtPass');
 	$this->db->where('num', $pass);
 	$resultado = $this->db->get();
 
-	if($resultado->num_rows() == 1){
+	if($resultado->num_rows() >0){
+	       $isEliminada = 	$this->mlogin->eliminarClaveTemporal($pass);
 			$this->load->view('restablecerPassword.php');
 
-}else{
+}else if($resultado->num_rows() == 0){
 	echo"<script>alert('Contraseña inválida. Por cuestiones de seguridad, se le devolverá a la página de inicio principal')</script>";
 			$this->load->view('inicio.php');
 
 }
-
+	 
 
 }
 
