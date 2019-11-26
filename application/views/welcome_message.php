@@ -10235,9 +10235,10 @@ header.masthead h1 {
         <div class="col-lg-3 col-md-6 text-center">
           <div class="mt-5">
             <h3 class="h4 mb-2">Librerías</h3>
-               <h3 class="h4 mb-2">Web servers</h3>
+               <h3 class="h4 mb-2">Web service</h3>
                 <h3 class="h4 mb-2">BlockChain</h3>
                    <h3 class="h4 mb-2">Minería de datos</h3>
+                    <h3 class="h4 mb-2">Continuous build</h3>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 text-center">
@@ -10246,6 +10247,7 @@ header.masthead h1 {
               <h3 class="h4 mb-2">Máquinas virtuales</h3>
                <h3 class="h4 mb-2">Pruebas de software</h3>
                <h3 class="h4 mb-2">Machine Learning</h3>
+                <h3 class="h4 mb-2">Store Procedure</h3>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 text-center">
@@ -10253,6 +10255,8 @@ header.masthead h1 {
             <h3 class="h4 mb-2">Gestor de ambientes</h3>
                <h3 class="h4 mb-2">Contol de versiones</h3>
                <h3 class="h4 mb-2">Automatización</h3>
+                <h3 class="h4 mb-2">Servidores</h3>
+                 <h3 class="h4 mb-2">Desarrollo de juegos</h3>
             <p class="text-muted mb-0"></p>
           </div>
         </div>
@@ -10261,6 +10265,8 @@ header.masthead h1 {
             <h3 class="h4 mb-2">Frameworks</h3>
               <h3 class="h4 mb-2">Patrones de diseño</h3>
                 <h3 class="h4 mb-2">Metodologías ágiles</h3>
+                 <h3 class="h4 mb-2">Criptomonedas</h3>
+                  <h3 class="h4 mb-2">... y más</h3>
                </div>
     </div>
   </section>
@@ -10274,7 +10280,7 @@ header.masthead h1 {
             <h2 class="mt-0">EDITOR</h2>
           <h2 class="mt-0">Franco Borsani</h2>
           <hr class="divider my-4">
-          <p class="text-muted mb-5">PÁGINA REALIZADA CON CODEIGNITER, BOOTSTRAP (CSS, JS, JQUERY) Y APLICANDO EL PATRÓN DE DISEÑO MVC</p>
+          <p class="text-muted mb-5">PÁGINA REALIZADA CON CODEIGNITER, BOOTSTRAP Y APLICANDO EL PATRÓN DE DISEÑO MVC</p>
         </div>
       </div>
 
@@ -10282,12 +10288,27 @@ header.masthead h1 {
         <div class="col-lg-8 text-center">
 <div id="result"></div> 
         <div class="col-lg-13 text-center">
-          <i class="fas fa-envelope fa-3x mb-3 text-muted">PERFIL LINKEDIN:</i>
+          <i class="fas fa-3x text-muted">PERFIL LINKEDIN:</i>
           <a class="d-block" href="https://www.linkedin.com/in/franco-borsani-2936b1192/">ABRIR PERFIL</a>
         </div>
       </div>
       </div>
     </div>
+    
+    
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+<div id="result"></div> 
+        <div class="col-lg-13 text-center">
+         <form action="<?php echo base_url();?>clogin/eliminarCuenta" method="POST">
+         <button type="submit" class="btn btn-primary btn-block btn-large" name="eliminarCuenta">Eliminar cuenta</button>
+ </form>
+        </div>
+      </div>
+      </div>
+    </div>
+    
+    
   </section>
 
 

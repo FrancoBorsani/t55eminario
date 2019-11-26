@@ -124,9 +124,9 @@ $mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.c
 $mail->Port = 587; // TLS only
 $mail->SMTPSecure = 'tls'; // ssl is deprecated
 $mail->SMTPAuth = true;
-$mail->Username = 'borsafranco@gmail.com'; // email
-$mail->Password = '2771999allforwindows10'; // password
-$mail->setFrom('borsafranco@gmail.com', 'Franco Borsani'); // From email and name
+$mail->Username = 'tpseminariodelenguajes@gmail.com'; // email
+$mail->Password = '2771999YT'; // password
+$mail->setFrom('tpseminariodelenguajes@gmail.com', 'Franco Borsani'); // From email and name
 $mail->addAddress($result1->correo, 'Sr'); // to email and name
 $mail->Subject = 'RECUPERACION LOGIN TP SEMINARIO';
 $mail->msgHTML($numeroRec->num); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
@@ -260,6 +260,35 @@ $pass = $this->input->post('txtPass');
 }
 
 
+}
+
+
+public function eliminarCuenta(){
+    $this->load->view('eliminarCuenta.php');
+    
+    
+}
+
+
+public function borrarDatos(){
+    $this->load->model('mpersona');
+    $paramElim['txtCorreo'] = 	$this->input->post('txtCorreo');
+	$paramElim['txtClave'] =  sha1($this->input->post('txtClave'));
+
+
+
+
+	$variable = $this->mpersona->eliminar($paramElim);
+    
+    
+	if($variable == 2){
+
+	$this->load->view('bienvenido.php');
+}else{
+	echo"<script>alert('Alguno de los datos ingresados es inválido.')</script>";
+			$this->load->view('bienvenido.php');
+}
+    
 }
 
 

@@ -45,5 +45,31 @@ $this->db->insert('persona', $campos);
 return 2;
 }
 
+
+
+
+public function eliminar($paramElim){
+	$this->db->select('correo', 'contraseña');
+	$this->db->from('persona');
+	$this->db->where('correo', $paramElim['txtCorreo']);
+		$this->db->where('contraseña', $paramElim['txtClave']);
+
+	$resultado = $this->db->get();
+
+	if($resultado->num_rows() ==0){
+	    
+	    
+	    
+	return;}
+
+
+$this -> db -> where('correo', $paramElim['txtCorreo']);
+$this -> db -> delete('persona');
+
+return 2;
+    
+    
+}
+
 	}
 

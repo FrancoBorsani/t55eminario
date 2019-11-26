@@ -64,7 +64,7 @@ input {
 input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }
 </style></head><body>
 <div class="login">
-    <h1>Logueo</h1>
+    <h1>Restablecer password</h1>
     <form action="<?php echo base_url();?>clogin/restablecerPassword" method="POST">
          <input type="text" name="correo" placeholder="Reescriba su correo" required="required" />
       <input type="password" name="txtClave3" placeholder="Nueva contaseña" required="required" />
@@ -72,9 +72,6 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
         <button type="submit" class="btn btn-primary btn-block btn-large" name="Ingresar">Guardar cambios</button>
 
     </form>
-   <form action="<?php echo base_url();?>clogin/problems" method="POST">
-         <button type="submit" class="btn btn-primary btn-block btn-large" name="DatosPerdidos">Problemas para ingresar</button>
- </form>
 
 </div>
 <script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>

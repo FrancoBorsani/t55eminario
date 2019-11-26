@@ -7,7 +7,6 @@
     <form action="<?php echo base_url(); ?>Welcome/guardar" method="POST">
             <table>
                 <tr>
-
         <input type="text" name="txtUsuario" placeholder="Nombre de usuario" required="required" />
         <input type="password" name="txtClave" placeholder="Contaseña" required="required" />
         <input type="password" name="claveRepeat" placeholder="Repita la contraseña" required="required" />
@@ -29,9 +28,18 @@
                           </select>
                         </div>
                 </div>
-                 
+            </div>
+            
+                <td colspan="2" name = "g-recaptcha-response"><?php echo $this->recaptcha->render(); ?></td>  
+            
+       <tr>
+
+          
+       </tr>
+    </form>
 
         <button type="submit" class="btn btn-primary btn-block btn-large" name="guardar">REGISTRARSE</button>
+        </table>
     </form>
 
 </body>

@@ -5,16 +5,31 @@ class Welcome extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('mpersona');
+
 	}
 
 
 
 	public function index()
 	{
+			$this->load->library('Recaptcha');
 		$this->load->view('bienvenido.php');
 	}
 
 	public function guardar(){
+	    
+	    		// Load the library
+		$this->load->library('recaptcha');
+
+		// Catch the user's answer
+	//	$captcha_answer = $this->input->post('g-recaptcha-response');
+$captcha_answer = $this->input->post('g-recaptcha-response');
+		// Verify user's answer
+		$response = $this->recaptcha->verifyResponse($captcha_answer);
+
+		// Processing ...
+		if ($response['success']) {
+
 	$param['nombreUs'] = 	$this->input->post('txtUsuario');
 	$param['clave'] =  sha1($this->input->post('txtClave'));
 	$param['claveRepeat'] = sha1($this->input->post('claveRepeat'));
@@ -45,8 +60,14 @@ class Welcome extends CI_Controller {
 
 
 
-
+		} else {
+		    echo"<script>alert('EL CAPTCHA NO HA SIDO VALIDADO')</script>";
+		$this->load->view('registro.php');
+		}
+	    
+	  
 
 	}
+	
 
 }
